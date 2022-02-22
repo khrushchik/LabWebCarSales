@@ -1,0 +1,11 @@
+User-Agent: *
+Disallow: /Home/AboutUs.html
+Disallow: /Home/Privacy.html
+Disallow: /Producers/Create.html
+Disallow: /Producers/Delete.html
+Disallow: /Producers/Edit.html
+Disallow: /Cars/Create.html
+Disallow: /Cars/Delete.html
+Disallow: /Cars/Edit.html
+Disallow: /Corporations/Create.html
+Disallow: /Corporations/Delete.html

@@ -1,0 +1,64 @@
+﻿@model LabWebCars.Models.Car
+
+@{
+    ViewData["Title"] = "Детальніше";
+}
+
+<h1>Детальніше про авто</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <div class="row">
+    <div class="col-sm">
+       <dl>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Transmission)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Transmission)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Info)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Info)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Producer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Producer.Name)
+        </dd>
+        </dl>
+       </div>
+    <div class="col-sm">
+        <img src="@Html.DisplayFor(model => model.Photo)"  width="400" height="300" />
+    </div>
+     </div>
+</div>
+<div>
+    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Редагувати</a>
+    }
+    <a href="javascript:history.go(-1)">Повернутися назад</a>
+</div>

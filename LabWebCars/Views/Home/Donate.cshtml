@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Оплата";
+}
+<div id="liqpay_checkout" style="height: 1000px;
+        width: 1000px"></div>
+<script>
+    data = 'eyJ2ZXJzaW9uIjoiMyIsInB1YmxpY19rZXkiOiJpNTc3MDcxMzA4ODciLCJwcml2YXRlX2tleSI6ImRaTjhjanJmWFVWOGtCREFNZmxGQ2pXVHpMWGVxdkhoaU1uOTdPcWoiLCJhY3Rpb24iOiJwYXkiLCJhbW91bnQiOiI1IiwiY3VycmVuY3kiOiJVQUgiLCJkZXNjcmlwdGlvbiI6IkRvbmF0aW9uIHRvIGRldmVsb3BlcnMiLCJvcmRlcl9pZCI6InNha2pka2xzYWxhS0pTRFNBRFNqZGFsa3NkeG5rbGNqaXFqMjQxMjQzMjEzZWpramhzYmxhaGJsYVloc2FkYW5za2R6WmRzNDMzIn0=';
+    signature = 'q7uMsKTMLQVLJNXQsycrxex16rw=';
+    window.LiqPayCheckoutCallback = function () {
+        LiqPayCheckout.init({
+            data: data,
+            signature: signature,
+            embedTo: "#liqpay_checkout",
+            language: "ru",
+            mode: "embed" // embed || popup
+        }).on("liqpay.callback", function (data) {
+            console.log(data.status);
+            console.log(data);
+        }).on("liqpay.ready", function (data) {
+            console.log('everything ready');
+        }).on("liqpay.close", function (data) {
+            console.log('everything closed');
+            // close
+        });
+    };
+</script>

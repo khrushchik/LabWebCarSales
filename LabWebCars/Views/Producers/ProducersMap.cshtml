@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Карта дилерів";
+}
+    <div class="map-responsive">
+        <input type="button" class="btn btn-primary" value="Назад" onclick="location.href='@Url.Action("Index")'" />
+        <div id="map" style="width: 1000px; height:1000px"></div>
+        <br />
+    </div>
+
+
+<script>
+    let map;
+    function Initialize() {
+        fetch('https://localhost:44370/api/producers1')
+            .then(data => data.json())
+            .then(data => initMap(data));
+
+    }
+    function initMap(data) {
+        let LatLngs = data.map(producer => producer.country)
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 6,
+        });
+        let lat;
+        let lng;
+        console.log(LatLngs);
+        data.forEach((value, index) => {
+            let latLng = value.country;
+            let splitted = latLng.split(', ');
+            lat = +splitted[0];
+            lng = +splitted[1];
+            console.log(lat);
+            console.log(lng);
+            let myMarkerOptions = {
+                position: new google.maps.LatLng(lat, lng),
+                map: map
+            }
+            let myMarker = new google.maps.Marker(myMarkerOptions);
+            const infoString = value.name + '</br>' + value.info + '</br>';// + '<img src ="' + value.Icon + '">';
+            console.log('info string is ', infoString);
+            // infoString - это место, где собирается контент того, что будет в подсказке к маркеру. Вставляй туда, что хочешь, там обыч
+            var infowindow = new google.maps.InfoWindow({
+                content: infoString
+            });
+            myMarker.addListener('click', function () {
+                infowindow.open(map, myMarker);
+            });
+
+        });
+        map.setCenter(new google.maps.LatLng(lat, lng));
+    }
+
+</script>
+
+
